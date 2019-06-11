@@ -109,8 +109,9 @@ function createHtml(parks){
   let results = parks.map((park)=>{
     return `<li>
         <h3>${park.fullName} in ${park.state}</h3>
-        <label>description</label><br>
-        <p>${park.description}</p><br>
+        <p>
+        <strong>Description:</strong><br>
+        ${park.description}</p><br>
         <a href="${park.url}">${park.fullName}</a>
     </li>`;
 

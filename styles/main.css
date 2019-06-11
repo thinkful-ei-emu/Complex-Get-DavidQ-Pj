@@ -1,0 +1,15 @@
+li{
+  list-style: none;
+  border: 2px solid darkgreen;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+h2{
+  text-align: center;
+}
+form{
+  text-align: center;
+}
+select{
+  font-size: 25px;
+}
