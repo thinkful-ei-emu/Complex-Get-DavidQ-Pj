@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-env jquery */
 'use strict';
+const apiKey = 'Usf2QzTZG4256Xe9d7R7s5ni1G1Rb2MK6FysrlGb';
 
 let states = {
   'AL': 'Alabama',
@@ -64,5 +65,33 @@ $('.js-form').submit(event => {
   event.preventDefault();
   let stateSelection = $('select').val();
   let maxResults = $('#js-number-input').val();
-  console.log(stateSelection + ' ' + maxResults);
+  fetchWebRequest(stateSelection,maxResults);
+  // console.log(stateSelection + ' ' + maxResults);
 });
+
+function fetchWebRequest(state,num){
+  let url = 'https://developer.nps.gov/api/v1/parks?stateCode=';
+  url += strInput(state,num);
+  fetch(url).then(result => {
+    if(result.ok !== true){
+      alert('Invalid state');
+    } else {
+      return result.json();
+    } 
+  })
+    .then(results => takeInResults(results));
+}
+
+function strInput(state, num){
+//we want to create a string that takes in our input and adds it to the end of our url in order to create the search result.
+  let result = '';
+  result += state.join(',').toLowerCase() + '&' + 'limit=' + num + '&api_Key=' + apiKey;
+  return result;
+}
+
+function takeInResults(data){
+  //should take in content recieved from server
+  let result = [{}];
+  return result;
+}
+
