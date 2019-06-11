@@ -5,18 +5,14 @@
 let states = {
   'AL': 'Alabama',
   'AK': 'Alaska',
-  'AS': 'American Samoa',
   'AZ': 'Arizona',
   'AR': 'Arkansas',
   'CA': 'California',
   'CO': 'Colorado',
   'CT': 'Connecticut',
   'DE': 'Delaware',
-  'DC': 'District Of Columbia',
-  'FM': 'Federated States Of Micronesia',
   'FL': 'Florida',
   'GA': 'Georgia',
-  'GU': 'Guam',
   'HI': 'Hawaii',
   'ID': 'Idaho',
   'IL': 'Illinois',
@@ -26,7 +22,6 @@ let states = {
   'KY': 'Kentucky',
   'LA': 'Louisiana',
   'ME': 'Maine',
-  'MH': 'Marshall Islands',
   'MD': 'Maryland',
   'MA': 'Massachusetts',
   'MI': 'Michigan',
@@ -42,11 +37,9 @@ let states = {
   'NY': 'New York',
   'NC': 'North Carolina',
   'ND': 'North Dakota',
-  'MP': 'Northern Mariana Islands',
   'OH': 'Ohio',
   'OK': 'Oklahoma',
   'OR': 'Oregon',
-  'PW': 'Palau',
   'PA': 'Pennsylvania',
   'PR': 'Puerto Rico',
   'RI': 'Rhode Island',
@@ -56,7 +49,6 @@ let states = {
   'TX': 'Texas',
   'UT': 'Utah',
   'VT': 'Vermont',
-  'VI': 'Virgin Islands',
   'VA': 'Virginia',
   'WA': 'Washington',
   'WV': 'West Virginia',
@@ -67,3 +59,10 @@ let states = {
 let stateMapped = Object.entries(states).map(state => `<option class="js-option" value="${state[0]}">${state[1]}</option>`);
 
 $('select').html(stateMapped);
+
+$('.js-form').submit(event => {
+  event.preventDefault();
+  let stateSelection = $('select').val();
+  let maxResults = $('#js-number-input').val();
+  console.log(stateSelection + ' ' + maxResults);
+});
