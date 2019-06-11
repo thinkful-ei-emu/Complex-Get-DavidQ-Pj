@@ -68,7 +68,10 @@ $('.js-form').submit(event => {
   fetchWebRequest(stateSelection,maxResults);
   // console.log(stateSelection + ' ' + maxResults);
 });
-
+function render(html){
+  $('.js-output').html(html);
+  console.log('operation complete');
+}
 function fetchWebRequest(state,num){
   let url = 'https://developer.nps.gov/api/v1/parks?stateCode=';
   url += strInput(state,num);
@@ -89,9 +92,30 @@ function strInput(state, num){
   return result;
 }
 
-function takeInResults(data){
+function takeInResults(obj){
   //should take in content recieved from server
-  let result = [{}];
-  return result;
+  let result = obj.data.map(park => {
+    return {
+      state:park.states,
+      fullName:park.fullName,
+      description: park.description,
+      url:park.url,
+    };
+  });
+  createHtml(result);
+  
 }
+function createHtml(parks){
+  let results = parks.map((park)=>{
+    return `<li>
+        <h3>${park.fullName} in ${park.state}</h3>
+        <label>description</label><br>
+        <p>${park.description}</p><br>
+        <a href="${park.url}">${park.fullName}</a>
+    </li>`;
+
+  });
+  render(results);  
+}
+
 
