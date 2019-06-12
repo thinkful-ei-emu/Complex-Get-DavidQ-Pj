@@ -65,7 +65,7 @@ $('.js-form').submit(event => {
   event.preventDefault();
   let stateSelection = $('select').val();
   let maxResults = $('#js-number-input').val();
-  fetchWebRequest(stateSelection,maxResults);
+  fetchWebRequest(stateSelection,maxResults-1);
   // console.log(stateSelection + ' ' + maxResults);
 });
 function render(html){
@@ -82,7 +82,7 @@ function fetchWebRequest(state,num){
       return result.json();
     } 
   })
-    .then(results => takeInResults(results));
+    .then(results => takeInResults(results)).catch(e=>alert(e.message));
 }
 
 function strInput(state, num){
