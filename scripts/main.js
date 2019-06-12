@@ -2,6 +2,7 @@
 /* eslint-env jquery */
 'use strict';
 const apiKey = 'Usf2QzTZG4256Xe9d7R7s5ni1G1Rb2MK6FysrlGb';
+const searchURL = 'https://developer.nps.gov/api/v1/parks?stateCode=';
 
 let states = {
   'AL': 'Alabama',
@@ -73,7 +74,7 @@ function render(html){
   console.log('operation complete');
 }
 function fetchWebRequest(state,num){
-  let url = 'https://developer.nps.gov/api/v1/parks?stateCode=';
+  let url = searchURL;
   url += strInput(state,num);
   fetch(url).then(result => {
     if(result.ok !== true){
@@ -85,10 +86,10 @@ function fetchWebRequest(state,num){
     .then(results => takeInResults(results)).catch(e=>alert(e.message));
 }
 
-function strInput(state, num){
+function strInput(state, maxResults=10){
 //we want to create a string that takes in our input and adds it to the end of our url in order to create the search result.
   let result = '';
-  result += state.join(',').toLowerCase() + '&' + 'limit=' + num + '&api_Key=' + apiKey;
+  result += state.join(',').toLowerCase() + '&limit=' + (maxResults - 1) + '&api_Key=' + apiKey;
   return result;
 }
 
@@ -118,5 +119,5 @@ function createHtml(parks){
   });
   render(results);  
 }
-
+ 
 
