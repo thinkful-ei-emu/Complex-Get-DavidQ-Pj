@@ -119,5 +119,5 @@ function createHtml(parks){
   });
   render(results);  
 }
-
+ 
 
